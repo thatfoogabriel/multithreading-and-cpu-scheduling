@@ -5,11 +5,12 @@ Operating Systems Project 1
 
 ![alt text](https://www.coursehero.com/qa/attachment/17486375/)
 
-Introduction:
+**Introduction:**
 - This program aims to utilize multiple threads to efficiently sort a set of numbers
 - The user provided set of numbers is put into a global array, then is split in half
 - After sorting each half is sorted, a final sorted array is built
-Implementation:
+
+**Implementation:**
 - The user is prompted for some numbers which is parsed into a dynamic vector
 - Two threads are created and assigned a half of the vector to sort concurrently
 - Once each half is sorted, a third thread is created to join the sorting threads’ results into a single sorted array
@@ -37,47 +38,47 @@ waiting, start, and completion time
 - **First Come First Serve (FCFS):**
 Current task to execute is chosen as the task that arrived earliest of those that are
 ready
-    - -Each time unit, the current task is executed, its start time is marked if executed for
+    - - Each time unit, the current task is executed, its start time is marked if executed for
 the first time, remaining time is decremented, and completion time is marked if its
 burst is completed
-    - -If any tasks have arrived and have burst time remaining, their waiting time is
+    - - If any tasks have arrived and have burst time remaining, their waiting time is
 incremented
-    - -Progress is printed at each time unit
+    - - Progress is printed at each time unit
 
 - **Shortest Job First (SJF):**
-    - -Current task to execute is the shortest burst time task of those that have arrived
-    - -Each time unit, the current task is executed, its start time is marked if executed for
+    - - Current task to execute is the shortest burst time task of those that have arrived
+    - - Each time unit, the current task is executed, its start time is marked if executed for
 the first time, remaining time is decremented, and completion time is marked if its
 burst is completed
-    - -If any tasks have arrived and have burst time remaining, their waiting time is
+    - - If any tasks have arrived and have burst time remaining, their waiting time is
 incremented
-    - -Progress is printed at each time unit
+    - - Progress is printed at each time unit
 
 - **Preemptive Priority:**
-    - -Current task to execute is chosen as the highest priority task of those that have
+    - - Current task to execute is chosen as the highest priority task of those that have
 arrived
-    - -Each time unit, the current task is executed, its start time is marked if executed for
+    - - Each time unit, the current task is executed, its start time is marked if executed for
 the first time, remaining time is decremented, and completion time is marked if its
 burst is completed
-    - -If a new task arrives with a higher priority than the current task, it is preempted by
+    - - If a new task arrives with a higher priority than the current task, it is preempted by
 the new task and put in a waiting state
-    - -If any tasks have arrived and have burst time remaining, their waiting time is
+    - - If any tasks have arrived and have burst time remaining, their waiting time is
 incremented
-    - -Progress is printed at each time unit
+    - - Progress is printed at each time unit
 
 - **Round Robin:**
-    - -Current task to execute is chosen as the task that arrived earliest of those that are
+    - - Current task to execute is chosen as the task that arrived earliest of those that are
 ready
-    - -Each time unit, the current task is executed, its start time is marked if executed for
+    - - Each time unit, the current task is executed, its start time is marked if executed for
 the first time, remaining time is decremented, and completion time is marked if its
 burst is completed
-    - -Current task is executed for as long as the given time quantum or until it’s
+    - - Current task is executed for as long as the given time quantum or until it’s
 completed
-    - -If a task needs more time to complete after the end of the time quantum, it is
+    - - If a task needs more time to complete after the end of the time quantum, it is
 pushed to the back of the ready queue
-    - -If any tasks have arrived and have burst time remaining, their waiting time is
+    - - If any tasks have arrived and have burst time remaining, their waiting time is
 incremented
-    - -Progress is printed at each time unit
+    - - Progress is printed at each time unit
 
 **Conclusion:**
 - In this project, I successfully implemented multithreaded programming and simulating
