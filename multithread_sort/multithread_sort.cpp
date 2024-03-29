@@ -70,10 +70,6 @@ void sortSecondHalf(vector<int>& arr, int start, int end) {
     mergeSort(arr, start, end);
 }
 
-// Merge two sorted halves
-void mergeHalves(vector<int>& arr, int start, int mid, int end) {
-    merge(arr, start, mid, end);
-}
 
 int main() {
     // Prompt user for array
@@ -93,18 +89,20 @@ int main() {
 
     int n = arr.size();
 
-    // Create 2 threads to sort halves
+    // Create 2 sorting threads
     thread t1(sortFirstHalf, ref(arr), 0, (n / 2) - 1);
     thread t2(sortSecondHalf, ref(arr), n / 2, n - 1);
 
-    // Join threads
+    // Wait for sorting completion
     t1.join();
     t2.join();
 
     // Merge sorted halves
-    mergeHalves(arr, 0, (n / 2) - 1, n - 1);
+    thread t3(merge, ref(arr), 0, (n / 2) - 1, n - 1);
+    t3.join();
 
     // Print sorted array
+    cout << "Sorted List: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }

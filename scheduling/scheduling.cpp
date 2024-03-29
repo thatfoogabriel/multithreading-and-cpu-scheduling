@@ -50,6 +50,7 @@ void FCFS(vector<Task>& tasks) {
     while (true) {
         bool allTasksCompleted = true;
         bool taskExecuted = false;
+
         for (size_t i = 0; i < tasks.size(); ++i) {
             // Check if task is ready and not completed
             if (currentTime >= tasks[i].arrival_time && tasks[i].remaining_time > 0) {
@@ -64,6 +65,13 @@ void FCFS(vector<Task>& tasks) {
                     // Execute task for one time unit
                     tasks[i].remaining_time--;
                     currentTime++;
+
+                    // Increment waiting time for other ready tasks
+                    for (size_t k = 0; k < tasks.size(); ++k) {
+                        if (k != i && currentTime >= tasks[k].arrival_time && tasks[k].remaining_time > 0) {
+                            tasks[k].waiting_time++;
+                        }
+                    }
 
                     // Update completion time on complete
                     if (tasks[i].remaining_time == 0) {
@@ -102,53 +110,57 @@ void SJF(vector<Task>& tasks) {
     while (true) {
         bool allTasksCompleted = true;
         bool taskExecuted = false;
+        size_t shortestJobIndex = -1;
+
+        // Find shortest ready task
         for (size_t i = 0; i < tasks.size(); ++i) {
-            // Check if task is ready and not completed
             if (currentTime >= tasks[i].arrival_time && tasks[i].remaining_time > 0) {
-                allTasksCompleted = false;
-                if (!taskExecuted) {
-                    int shortestJobIndex = -1;
-                    // Find task with least remaining time
-                    for (size_t j = 0; j < tasks.size(); ++j) {
-                        if (currentTime >= tasks[j].arrival_time && tasks[j].remaining_time > 0 &&
-                            (shortestJobIndex == -1 || tasks[j].remaining_time < tasks[shortestJobIndex].remaining_time)) {
-                            shortestJobIndex = j;
-                        }
-                    }
-
-                    // Increment waiting time for other ready tasks
-                    for (size_t k = 0; k < tasks.size(); ++k) {
-                        if (k != shortestJobIndex && currentTime >= tasks[k].arrival_time && tasks[k].remaining_time > 0) {
-                            tasks[k].waiting_time++;
-                        }
-                    }
-
-                    // Mark starting time
-                    if (tasks[shortestJobIndex].start_time == -1) {
-                        tasks[shortestJobIndex].start_time = currentTime;
-                    }
-
-                    // Execute task for one time unit
-                    tasks[shortestJobIndex].remaining_time--;
-                    currentTime++;
-
-                    // Update completion time on complete
-                    if (tasks[shortestJobIndex].remaining_time == 0) {
-                        tasks[shortestJobIndex].completion_time = currentTime;
-                    }
-
-                    // Mark task as complete and print progress
-                    printProgress(tasks, currentTime);
-                    taskExecuted = true;
+                if (shortestJobIndex == -1 || tasks[i].remaining_time < tasks[shortestJobIndex].remaining_time) {
+                    shortestJobIndex = i;
                 }
             }
         }
+
+        if (shortestJobIndex != -1) {
+            // Increment waiting time for other ready tasks
+            for (size_t k = 0; k < tasks.size(); ++k) {
+                if (k != shortestJobIndex && currentTime >= tasks[k].arrival_time && tasks[k].remaining_time > 0) {
+                    tasks[k].waiting_time++;
+                }
+            }
+
+            // Mark starting time
+            if (tasks[shortestJobIndex].start_time == -1) {
+                tasks[shortestJobIndex].start_time = currentTime;
+            }
+
+            // Execute task for one time unit
+            tasks[shortestJobIndex].remaining_time--;
+            currentTime++;
+
+            // Update completion time on complete
+            if (tasks[shortestJobIndex].remaining_time == 0) {
+                tasks[shortestJobIndex].completion_time = currentTime;
+            }
+
+            // Mark task as complete and print progress
+            printProgress(tasks, currentTime);
+            taskExecuted = true;
+        }
+
+        // Check if all tasks are completed
+        for (const auto& task : tasks) {
+            if (task.remaining_time > 0) {
+                allTasksCompleted = false;
+                break;
+            }
+        }
+
         if (allTasksCompleted) {
             break;
         }
     }
 }
-
 
 
 void PreemptivePriority(vector<Task>& tasks) {
@@ -171,6 +183,7 @@ void PreemptivePriority(vector<Task>& tasks) {
     while (true) {
         bool allTasksCompleted = true;
         bool taskExecuted = false;
+
         for (size_t i = 0; i < tasks.size(); ++i) {
             // Check if task is ready and not completed
             if (currentTime >= tasks[i].arrival_time && tasks[i].remaining_time > 0) {
@@ -278,12 +291,6 @@ void RoundRobin(vector<Task>& tasks, int time_quantum) {
             // Add unfinished task to end of ready queue
             if (tasks[task_index].remaining_time > 0) {
                 ready_queue.push_back(task_index);
-            }
-
-            // Check for newly arrived tasks
-            while (index < tasks.size() && tasks[index].arrival_time <= currentTime) {
-                ready_queue.push_back(index);
-                index++;
             }
         }
     }
