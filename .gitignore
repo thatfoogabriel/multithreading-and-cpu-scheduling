@@ -1,0 +1,11 @@
+/.vscode
+
+/merge_sort/multithread_sort.ilk
+/merge_sort/multithread_sort.obj
+/merge_sort/multithread_sort.pdb
+/merge_sort/vc140.pdb
+
+/scheduling/scheduling.ilk
+/scheduling/scheduling.obj
+/scheduling/scheduling.pdb
+/scheduling/vc140.pdb
