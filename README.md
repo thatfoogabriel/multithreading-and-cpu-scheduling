@@ -1,11 +1,12 @@
-# Operating Systems Project 1
+Operating Systems Project 1
+===========================
 
-**Part 1: Multithreaded sorting program that implements merge sort**
+# Part 1: Multithreaded sorting program that implements merge sort
 
 ![alt text](https://www.coursehero.com/qa/attachment/17486375/)
 
 
-**Part 2: Simulate the following CPU scheduling algorithms**
+# Part 2: Simulate the following CPU scheduling algorithms
   - First Come First Serve (FCFS)
   - Shortest Job First (SJF)
   - Preemptive Priority Scheduling
