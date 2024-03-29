@@ -1,9 +1,9 @@
 /.vscode
 
-/merge_sort/multithread_sort.ilk
-/merge_sort/multithread_sort.obj
-/merge_sort/multithread_sort.pdb
-/merge_sort/vc140.pdb
+/multithread_sort/multithread_sort.ilk
+/multithread_sort/multithread_sort.obj
+/multithread_sort/multithread_sort.pdb
+/multithread_sort/vc140.pdb
 
 /scheduling/scheduling.ilk
 /scheduling/scheduling.obj
