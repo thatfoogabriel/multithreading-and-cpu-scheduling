@@ -100,4 +100,4 @@ cases to consider. For example, when using Preemptive Priority if a task is of l
 higher priority tasks are ready, execute it until one does become ready in order to keep CPU
 utilization high. Printing the progress of each process at each time unit also helped me visualize
 each step of execution and debug my code. This project helped me understand the concepts
-taught in class and I feel more confident about my understanding of operating systems.
+taught in class and I now feel more confident about my understanding of operating systems.
