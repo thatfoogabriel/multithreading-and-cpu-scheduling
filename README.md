@@ -80,7 +80,18 @@ pushed to the back of the ready queue
 incremented
     * Progress is printed at each time unit
 
-**Conclusion:**
+# How to execute
+**Multithreaded Sorting Application**
+1. Execute multithread_sort.exe in command line
+2. Input a set of numbers with spaces(ex:  7 8 1 9 2 10 4)
+
+**CPU Scheduling Simulator**
+1. Execute scheduling.exe in command line
+2. Input text file name
+3. Input 1, 2, 3, or 4 for a scheduling algorithm to run
+4. Input time quantum value if choosing Round Robin(4)
+
+# Conclusion:
 - In this project, I successfully implemented multithreaded programming and simulating
 CPU scheduling algorithms. This experience gave me a much deeper understanding of these
 concepts, especially scheduling. They are simple on paper when only needing to order the
